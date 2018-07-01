@@ -4,12 +4,12 @@ import axios from 'axios';
 const baseUrl = '/api/get_all_parts'
 
 class App extends Component {
-  constructor(){
-    super();
+  constructor(props){
+    super(props);
 
     this.state = {
       parts: []
-    }
+     }
     this.updatePart = this.updatePart.bind( this );
     this.deletePart = this.deletePart.bind( this );
     this.createPart = this.createPart.bind( this );
@@ -19,7 +19,9 @@ class App extends Component {
   componentDidMount(){
     axios.get('/api/get_all_parts').then(results => {
       console.log(results)
-      this.setState({parts: results.data})
+      this.setState({
+        parts: results.data
+      })
     })
   }
 
@@ -46,14 +48,14 @@ class App extends Component {
   })
 }
 
-  render() {
+ render() {
     let myParts = this.state.parts.map(part => {
       return <ul key={part.id}>
         <li>{part.item}</li>
         <li>{part.type}</li>
       </ul>
     })
-    return (
+ return (
       <div className='car-parts'>
         <div className ='type'>#type of part</div>
         <div className='partId'>#part ID</div>
@@ -61,9 +63,9 @@ class App extends Component {
           {myParts}
         </ul>
       </div>
-    );
+   );
   }
-}
+ }
 
 
 export default App;
