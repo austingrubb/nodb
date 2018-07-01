@@ -16,9 +16,9 @@ module.exports = {
     },
 
     delete: (req, res) => {
-        let {id} = req.query;
+ 
         const {part} = req.params
-        parts.forEach((parts))
+        parts.forEach((part))
     },
 
     getPartById: (req, res) => {
