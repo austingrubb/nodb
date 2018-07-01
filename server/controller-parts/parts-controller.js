@@ -27,7 +27,7 @@ module.exports = {
         parts.forEach((part)=>{
             console.log(part.id)
             if(part.id == id){
-                 selected = part
+                 selected = parts
                  
             }
         })
