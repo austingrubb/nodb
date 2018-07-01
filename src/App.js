@@ -55,15 +55,15 @@ class App extends Component {
     })
     return (
       <div className='car-parts'>
+        <div className ='type'>#type of part</div>
+        <div className='partId'>#part ID</div>
         <ul>
           {myParts}
         </ul>
-        <button className="new-part" onClick={this.part}>
-            Add part
-          </button>
       </div>
     );
   }
 }
+
 
 export default App;
