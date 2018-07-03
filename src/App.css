@@ -1,28 +1,107 @@
 .App {
   text-align: center;
 }
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+ul {
+  padding: 0;
+  list-style-type: none;
 }
 
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
+.car-parts{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.car-parts .car-part {
+  box-shadow: 1px 4px 15px black;
+  margin: 10px 0px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url();
   color: white;
+  font-family: Copperplate;
+  font-size: 140%
+}
+body{
+  background-image: url('./components/307679.jpg');
+  background-position-y: 90%;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+
 }
 
-.App-title {
-  font-size: 1.5em;
+.car-part {
+  background: rgba(0, 0, 0, 0.7);
 }
 
-.App-intro {
-  font-size: large;
+.car-part span {
+  font-weight: 700;
+  display: inline-block;
+  margin: 3px 0;
+  
 }
 
-@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
+.car-part .ic {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button{
+  width: 120px;
+  height: 30px;
+  font-size: 16px;
+  border: none;
+  border-radius: 3px;
+  margin: 0 5px;
+  padding: 0;
+  font-weight: 600;
+  text-shadow: .5px .5px 1px rgba(0, 0, 0, 0.342);
+}
+
+.car-part .ic button:first-child {
+  margin-left: 0;
+}
+
+.car-part .ic button:last-child {
+  margin-right: 0;
+}
+
+header{
+  color:white;
+  text-shadow: .5px .5px 1px rgba(0, 0, 0, 0.342);
+  font-weight: 600;
+  font-family: Copperplate;
+}
+
+footer{
+  color:white;
+  text-shadow: .5px .5px 1px rgba(0, 0, 0, 0.342);
+  font-weight: 600;
+  font-family: Copperplate;
+}
+
+.car-parts select{
+  width: 120px;
+  height: 30px;
+  font-size: 16px;
+  border: none;
+  border-radius: 3px;
+  margin: 0 5px;
+  padding: 0;
+  font-weight: 600;
+  text-shadow: .5px .5px 1px rgba(0, 0, 0, 0.342);
+}
+
+.car-parts input{
+  height: 27px;
+  margin: 5px 5px;
+ 
+}
+
+.weatherTile{
+  color: lime;
 }

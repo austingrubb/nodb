@@ -1,27 +1,28 @@
  
 let carParts = [
-    {id: 1, type: "performance", item: "turbo"},
-    {id: 2, type: "performance", item: "coilovers"},
-    {id: 3, type: "performance", item: "exhaust"},
-    {id: 4, type: "performance", item: "wheels"},
-    {id: 5, type: "performance", item: "audio"},
-    {id: 6, type: "performance", item: "tuner"},
-    {id: 7, type: "performance", item: "injectors"},
-    {id: 8, type: "maintenance", item: "air-filter"},
-    {id: 9, type: "maintenance", item: "tie-rod"},
-    {id: 10, type: "maintenance", item: "radiator"},
-    {id: 11, type: "maintenance", item: "waterpump"},
-    {id: 12, type: "maintenance", item: "oil"},
+    {id: 1, type: "Performance", item: "turbo", price: 3500},
+    {id: 2, type: "Performance", item: "coilovers", price: 2000},
+    {id: 3, type: "Performance", item: "exhaust", price: 400},
+    {id: 4, type: "Performance", item: "wheels", price: 2800},
+    {id: 5, type: "Performance", item: "audio", price: 1500},
+    {id: 6, type: "Performance", item: "tuner", price: 350},
+    {id: 7, type: "Performance", item: "injectors", price: 1750},
+    {id: 8, type: "Maintenance", item: "air-filter", price: 40},
+    {id: 9, type: "Maintenance", item: "tie-rod", price: 150},
+    {id: 10, type: "Maintenance", item: "radiator", price: 190},
+    {id: 11, type: "Maintenance", item: "waterpump", price: 340},
+    {id: 12, type: "Maintenance", item: "oil", price: 110},
 
 ]
-var id = 12;
+var id = 13;
 module.exports = {
     create: (req,res) => {
-        const {type,item} = req.body;
+        const {type,item,price} = req.body;
         let newParts = {
             id:id,
             type:type,
-            item:item
+            item:item,
+            price:price
         };
         id++
         carParts.push(newParts);
@@ -33,37 +34,35 @@ module.exports = {
     },
 
     update: (req, res) => {
-        const {id, type, item} = req.body
-        
-         carParts.foreach((newParts, index) =>{
+        const {price} = req.body
+        const {id} = req.query
+        //console.log(req.body)
+         carParts.forEach((newParts, index) =>{
              if(newParts.id == id){
-                   carParts[index].type = type||carParts[index].type
+                 //console.log(carParts[index])
+                   carParts[index].price = +price|| carParts[index].price
              };
          })
-         carParts[index] = {
-             id:carParts[index].id,
-             type:req.body.type||carParts[index].type,
-             item:req.body.item||carParts[index].item
-         }
-         res.status(200).json(carparts)
+         res.status(200).json(carParts)
      },
     
     delete:(req,res) => {
-        let {id} = req.query;
-        let {part} = req.params
-        carParts.forEach((carParts, id)=>{
-            if(part.id == id){
-                carParts.splice(id, 1)  
+        const {id} = req.params
+        //console.log(req.params)
+        carParts.forEach((newParts, index)=>{
+            if(newParts.id == req.params.id){
+                carParts.splice(index, 1)
             }
         })
-        res.status(200).json(carParts)
+
+            res.status(200).json(carParts)
     },
 
     getPartById: (req, res) => {
         const {id} = req.params;
         let selected;
         carParts.forEach((part)=>{
-            console.log(part.id)
+           // console.log(part.id)
             if(part.id == id){
                  selected = part
                  
