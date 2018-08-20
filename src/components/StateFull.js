@@ -19,9 +19,9 @@ class StateFull extends Component {
         <div className='Groceries-item'>
            <div key={this.props.id}>
                 <ul>
-                <li><span>Item: </span>{this.props.item}</li>
-                <li><span>type: </span>{this.props.type}</li>
-                <li><span>price: </span>${this.props.price}</li>
+                <li><span>Item: </span> {this.props.item}</li>
+                <li><span>type: </span> {this.props.type}</li>
+                <li><span>price: </span> ${this.props.price}</li>
             </ul>
 
             <div className='Groceries-item-class'>

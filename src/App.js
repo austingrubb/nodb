@@ -14,7 +14,7 @@ class App extends Component {
 
     this.state = {
       item: "",
-      type: "",
+      type: "Healthy Food",
       groceries: [],
       price: '',
       updatedPrice: null,
@@ -85,11 +85,11 @@ class App extends Component {
     console.log(response.data)
     this.setState({
       groceries: response.data,
-      type: '',
+      type: 'Healthy Food',
       item: '',
       price: '',
     })
-  })
+  }).catch( err => console.log(err))
 
 }
 groceriesType = (pt) =>{
@@ -103,6 +103,7 @@ handleChange = (key,value) =>{
 }
  render() {
   let Junk = this.state.groceries.map(groceries => {
+    console.log(groceries.type)
         if(groceries.type === 'Healthy Food'){
           return <StateFull
                   key={groceries.id}
@@ -117,7 +118,7 @@ handleChange = (key,value) =>{
                 />
        }})
        let healthyFood =  this.state.groceries.map(groceries => {
-
+         console.log(groceries.type)
         if(groceries.type === 'Junk Food'){
           return <StateFull
                   key={groceries.id}
@@ -131,7 +132,7 @@ handleChange = (key,value) =>{
                   deleteGroceries ={this.deleteGroceries}
                 />
        }})
-       console.log(this.state.updatedPrice)
+      //  console.log(this.state.updatedPrice)
  return (
       <div className='Groceries-list'>
         <Header/>
@@ -141,8 +142,7 @@ handleChange = (key,value) =>{
         <div>
         <div className='grocery-input-container'>
         <div className='grocery-dropdown'>
-          <select defaultValue='Healthy Food' onChange={(e) => this.groceriesType(e.target.value)} value={this.state.type}>
-            <option value=''></option>
+          <select onChange={(e) => this.groceriesType(e.target.value)} value={this.state.type}>
             <option value="Healthy Food">Healthy Food</option>,
             <option value="Junk Food">Junk Food</option>
           </select>

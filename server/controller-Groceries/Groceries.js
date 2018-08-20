@@ -25,6 +25,7 @@ module.exports = {
             price:price
         };
         id++
+        console.log(newGroceries)
         groceries.push(newGroceries);
         res.status(200).json(groceries)
     },
