@@ -5,7 +5,7 @@ export default function Header(){
     return (
         <div>
             <h1>
-            <header>The Groceries List</header>
+            <header>My Groceries List</header>
             </h1>
         </div>
     )

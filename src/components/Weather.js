@@ -57,6 +57,7 @@ class Weather extends Component {
                 <h4 className='weather-h2'>Weather:</h4>
                 <p> the temperature in {this.state.cityName}:</p>
                 <p className='temp'>{this.state.temperature}&#8457;</p>
+                {/* <img src={`http://openweathermap.org/img/w/${this.state.icon}.png`}/> */}
                 <input className='input-periphs weatherZip' onChange={(e) => this.setState({zipCode: e.target.value})} placeholder='Enter Zip Code'/>
                 <button onClick={() => this.updateZip(this.state.zipCode)} className='btn input-periphs'>Submit</button>
             </div>

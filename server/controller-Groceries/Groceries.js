@@ -1,17 +1,17 @@
  
 let groceries = [
-    {id: 1, type: "Heathy Food", item: "cucumber", price: 3.00},
-    {id: 2, type: "Junk Food", item: "salsa", price: 7.00},
-    {id: 3, type: "Junk Food", item: "chips", price: 4.00},
-    {id: 4, type: "Heathy Food", item: "frozon-berrys", price: 2.80},
-    {id: 5, type: "Heathy Food", item: "alomond-milk", price: 3.50},
-    {id: 6, type: "Heathy Food", item: "ribeye", price: 8.50},
-    {id: 7, type: "Heathy Food", item: "chicen-brest", price: 1.75},
-    {id: 8, type: "Junk Food", item: "french-fries", price: 4.00},
-    {id: 9, type: "Junk Food", item: "kit-kat", price: 1.50},
-    {id: 10, type: "Junk Food", item: "chetos", price: 1.90},
-    {id: 11, type: "Heathy Food", item: "apple", price: 3.40},
-    {id: 12, type: "Heathy Food", item: "bannana", price: 1.10},
+    {id: 1, type: " Healthy Food", item: " Cucumber", price: 3.00},
+    {id: 2, type: " Junk Food", item: " Salsa", price: 7.00},
+    {id: 3, type: " Junk Food", item: " Chips", price: 4.00},
+    {id: 4, type: " Healthy Food", item: " Frozen-berries", price:  2.80},
+    {id: 5, type: " Healthy Food", item: " Almond-milk", price: 3.50},
+    {id: 6, type: " Healthy Food", item: " Ribeye", price: 8.50},
+    {id: 7, type: " Healthy Food", item: " Chicken-brest", price: 1.75},
+    {id: 8, type: " Junk Food", item: " French-fries", price: 4.00},
+    {id: 9, type: " Junk Food", item: " Kit-kat", price: 1.50},
+    {id: 10, type: " Junk Food", item: " Cheetos", price: 1.90},
+    {id: 11, type: " Healthy Food", item: " Apple", price: 3.40},
+    {id: 12, type: " Healthy Food", item: " Banana", price: 1.10},
 
 ]
 var id = 13;

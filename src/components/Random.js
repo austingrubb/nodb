@@ -11,7 +11,7 @@ class RandomTrumpQuotes extends Component {
    render() {
    return (
         <div className= "RandomTrumpQuotes">
-           <button onClick={()=> this.props.randomTrumpQuotes()}>Give me a random quote</button>
+           <button onClick={()=> this.props.randomTrumpQuotes()}>Trump Quotes</button>
             <p>{this.props.randomTrumpQuotesArr}</p>
         </div>
      );

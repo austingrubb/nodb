@@ -3,9 +3,9 @@ import StateFull from './components/StateFull';
 import axios from 'axios';
 import './App.css';
 import Header from './components/Header';
-import Footer from './components/Footer';
 import Weather from './components/Weather';
 import RandomTrumpQuotes from './components/Random'
+import Personalized from './components/Personalized'
 const baseUrl = '/api/get_all_Groceries'
 
 class App extends Component {
@@ -14,9 +14,9 @@ class App extends Component {
 
     this.state = {
       item: "",
-      type: "Heathy",
+      type: " Heathy Food",
       groceries: [],
-      price: null,
+      price: '',
       updatedPrice: null,
       name: "austin",
       id: 0,
@@ -26,6 +26,7 @@ class App extends Component {
     this.deleteGroceries = this.deleteGroceries.bind( this );
     this.createGroceries = this.createGroceries.bind( this );
     this.groceriesType = this.groceriesType.bind( this );
+    this.personalizedQuote = this.personalizedQuote.bind(this);
   }
 
   componentDidMount(){
@@ -38,12 +39,22 @@ class App extends Component {
   }
 
   randomTrumpQuotes = () =>{
-    axios.get(`https://api.whatdoestrumpthink.com/api/` + 'v1/quotes/random').then((response) =>{
+    axios.get(`https://api.whatdoestrumpthink.com/api/v1/quotes/random`).then((response) =>{
       this.setState({
         randomTrumpQuotesArr: response.data.message
       })
     }) 
   } 
+
+  personalizedQuote(name) {
+    console.log(name)
+    axios.get(`https://api.whatdoestrumpthink.com/api/v1/quotes/personalized?q=${name}`).then((response) =>{
+      console.log(response)
+      this.setState({
+        personalizedQuote: response.data.message
+    })
+    })    
+  }
 
   updateGroceries(id, price) {
     console.log(id, price)
@@ -74,7 +85,9 @@ class App extends Component {
     console.log(response.data)
     this.setState({
       groceries: response.data,
-   
+      type: '',
+      item: '',
+      price: '',
     })
   })
 
@@ -89,8 +102,9 @@ handleChange = (key,value) =>{
   this.setState({[key]:value})
 }
  render() {
-  let newGroceries = this.state.groceries.map(groceries => {
-        return (<StateFull
+  let Junk = this.state.groceries.map(groceries => {
+        if(groceries.type === ' Junk Food'){
+          return <StateFull
                   key={groceries.id}
                   id={groceries.id}
                   type={groceries.type}
@@ -100,27 +114,53 @@ handleChange = (key,value) =>{
                   updateGroceries ={this.updateGroceries}
                   handleChange ={this.handleChange}
                   deleteGroceries ={this.deleteGroceries}
-                />)
-       })
+                />
+       }})
+       let healthyFood =  this.state.groceries.map(groceries => {
+
+        if(groceries.type === ' Healthy Food'){
+          return <StateFull
+                  key={groceries.id}
+                  id={groceries.id}
+                  type={groceries.type}
+                  item={groceries.item}
+                  price={groceries.price}
+                  updatedPrice = {this.state.updatedPrice}
+                  updateGroceries ={this.updateGroceries}
+                  handleChange ={this.handleChange}
+                  deleteGroceries ={this.deleteGroceries}
+                />
+       }})
        console.log(this.state.updatedPrice)
  return (
       <div className='Groceries-list'>
         <Header/>
+        <div className='weather'>
         <Weather/>
-        <RandomTrumpQuotes randomTrumpQuotesArr={this.state.randomTrumpQuotesArr}  randomTrumpQuotes={this.randomTrumpQuotes}/>
-        <div>
-          <select onChange={(e) => this.groceriesType(e.target.value)} >
-            <option>Heathy Food</option>,
-            <option>Junk Food</option>
-          </select>
-         <input onChange={(e) => this.handleChange("item",e.target.value)}/>
-         <input onChange={(e) => this.handleChange("price",e.target.value)}/>
-        <button onClick={this.createGroceries}>Add Groceries</button>
-        <ol>
-          {newGroceries}
-        </ol>
         </div>
-        <Footer/>
+        <div>
+        <div className='grocery-input-container'>
+        <div className='grocery-dropdown'>
+          <select onChange={(e) => this.groceriesType(e.target.value)} value={this.state.type}>
+            <option value="Healthy Food">Healthy Food</option>,
+            <option value="Junk Food">Junk Food</option>
+          </select>
+        </div>
+            <input onChange={(e) => this.handleChange("item",e.target.value)} value={this.state.item}placeholder='Item Name'/>
+            <input onChange={(e) => this.handleChange("price",e.target.value)} value={this.state.price}placeholder='Item Price'/>
+            <button onClick={this.createGroceries}>Add Groceries</button>
+        </div>
+        <div className='food-container'>
+          <div>
+            {Junk}
+          </div>
+          <div>
+            {healthyFood}
+          </div>
+        </div>
+        </div>
+        <RandomTrumpQuotes randomTrumpQuotesArr={this.state.randomTrumpQuotesArr}  randomTrumpQuotes={this.randomTrumpQuotes}/>
+        <Personalized personalizedQuoteString={this.state.personalizedQuote} personalizedQuote={this.personalizedQuote}/>
       </div>
    );
   }

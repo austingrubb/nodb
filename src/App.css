@@ -11,18 +11,39 @@ ul {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  
+}
+
+.grocery-dropdown{
+  text-shadow: .5px .5px 1px rgba(0, 0, 0, 0.342);
+  background-image: linear-gradient(rgb(164, 168, 224),rgb(30, 204, 30),rgb(19, 156, 19), rgb(163, 240, 119))
+}
+.weather{
+  position: fixed;
+  right: 70px;
+  top: 70px;
+  
 }
 .Groceries-list .Groceries-item {
+  font-family: 'Caveat', cursive;
   box-shadow: 1px 4px 15px black;
-  margin: 10px 0px;
   padding: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
   background-image: url();
   color: white;
-  font-family: Copperplate;
-  font-size: 140%
+  /* font-family: Copperplate; */
+  font-size: 170%;
+  
+}
+
+.grocery-input-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
 }
 body{
   background-image: url('./components/7689c5513084cd3ae199cec4f9b84af3.jpg');
@@ -30,17 +51,20 @@ body{
   background-attachment: fixed;
   background-repeat: no-repeat;
   background-size: 100%;
-
+  
 }
 
 .Groceries-item {
   background: rgba(0, 0, 0, 0.7);
+  /* background: transparent; */
+  margin: 20px;
 }
 
 .Groceries-item span {
   font-weight: 700;
   display: inline-block;
   margin: 3px 0;
+  
   
 }
 
@@ -49,10 +73,11 @@ body{
   display: flex;
   justify-content: center;
   align-items: center;
+  
 }
 
 button{
-  width: 120px;
+  width: 130px;
   height: 30px;
   font-size: 16px;
   border: none;
@@ -60,7 +85,16 @@ button{
   margin: 0 5px;
   padding: 0;
   font-weight: 600;
+  color: white;
+  /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
   text-shadow: .5px .5px 1px rgba(0, 0, 0, 0.342);
+  background-image: linear-gradient(rgb(164, 224, 174),rgb(30, 204, 30),rgb(19, 156, 19), rgb(163, 240, 119))
+}
+
+button:hover{
+  background: linear-gradient(rgb(6, 207, 93),rgb(45, 226, 142));
+  cursor: pointer;
+  
 }
 
 .Groceries-item .Groceries-item-class button:first-child {
@@ -75,7 +109,7 @@ header{
   color:white;
   text-shadow: .5px .5px 1px rgba(0, 0, 0, 0.342);
   font-weight: 600;
-  font-family: Copperplate;
+  font-family: 'Lobster', cursive;
 }
 
 footer{
@@ -100,7 +134,14 @@ footer{
 .Groceries-list input{
   height: 27px;
   margin: 5px 5px;
-  
+  background: transparent;
+  /* background: rgba(0, 0, 0, 0.7); */
+  color: lime;
+  border-radius: 5px;
+}
+
+::placeholder{
+  color: lime
 }
 
 .weatherTile{
@@ -117,5 +158,26 @@ footer{
   background-image: url();
   color: white;
   font-family: Copperplate;
-  font-size: 140%
+  font-size: 140%;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.personalizedTrumpQuote{
+  box-shadow: 1px 4px 15px black;
+  margin: 10px 0px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url();
+  color: white;
+  font-family: Copperplate;
+  font-size: 140%;
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.food-container{
+  display: flex;
+  align-items: flex-start;
+  
 }

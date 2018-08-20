@@ -14,7 +14,7 @@ class StateFull extends Component {
       }
   
    render() {
-      {this.props.test}
+    //   {this.props.test}
    return (
         <div className='Groceries-item'>
            <div key={this.props.id}>
@@ -26,7 +26,7 @@ class StateFull extends Component {
 
             <div className='Groceries-item-class'>
                 <button onClick={()=> this.props.updateGroceries(this.props.id, this.state.updatedPrice)}>Update</button>
-                <input name="updatedPrice" onChange={(e) => this.handleChange(e.target.name, e.target.value)}/>
+                <input name="updatedPrice" onChange={(e) => this.handleChange(e.target.name, e.target.value)}value={this.state.updatedPrice}placeholder='New Price'/>
                 <button onClick={()=> this.props.deleteGroceries(this.props.id, this.props.groceries)}>Delete</button>
             </div>
 
