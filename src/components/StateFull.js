@@ -26,7 +26,7 @@ class StateFull extends Component {
 
             <div className='Groceries-item-class'>
                 <button onClick={()=> this.props.updateGroceries(this.props.id, this.state.updatedPrice)}>Update</button>
-                <input name="updatedPrice" onChange={(e) => this.handleChange(e.target.name, e.target.value)}value={this.state.updatedPrice}placeholder='New Price'/>
+                <input name="updatedPrice" onChange={(e) => this.handleChange(e.target.name, e.target.value)}placeholder='New Price'/>
                 <button onClick={()=> this.props.deleteGroceries(this.props.id, this.props.groceries)}>Delete</button>
             </div>
 

@@ -14,7 +14,7 @@ class App extends Component {
 
     this.state = {
       item: "",
-      type: " Heathy Food",
+      type: "",
       groceries: [],
       price: '',
       updatedPrice: null,
@@ -103,7 +103,7 @@ handleChange = (key,value) =>{
 }
  render() {
   let Junk = this.state.groceries.map(groceries => {
-        if(groceries.type === ' Junk Food'){
+        if(groceries.type === 'Healthy Food'){
           return <StateFull
                   key={groceries.id}
                   id={groceries.id}
@@ -118,7 +118,7 @@ handleChange = (key,value) =>{
        }})
        let healthyFood =  this.state.groceries.map(groceries => {
 
-        if(groceries.type === ' Healthy Food'){
+        if(groceries.type === 'Junk Food'){
           return <StateFull
                   key={groceries.id}
                   id={groceries.id}
@@ -141,7 +141,8 @@ handleChange = (key,value) =>{
         <div>
         <div className='grocery-input-container'>
         <div className='grocery-dropdown'>
-          <select onChange={(e) => this.groceriesType(e.target.value)} value={this.state.type}>
+          <select defaultValue='Healthy Food' onChange={(e) => this.groceriesType(e.target.value)} value={this.state.type}>
+            <option value=''></option>
             <option value="Healthy Food">Healthy Food</option>,
             <option value="Junk Food">Junk Food</option>
           </select>
