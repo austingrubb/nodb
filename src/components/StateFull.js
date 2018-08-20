@@ -8,15 +8,15 @@ class StateFull extends Component {
        }
     }
 
-    handlChange = (key, value) =>{
-        //console.log(value)
+    handleChange = (key, value) =>{
+        console.log(value)
         this.setState({[key]:value})
       }
   
    render() {
       {this.props.test}
    return (
-        <div className='car-part'>
+        <div className='Groceries-item'>
            <div key={this.props.id}>
                 <ul>
                 <li><span>Item: </span>{this.props.item}</li>
@@ -24,10 +24,10 @@ class StateFull extends Component {
                 <li><span>price: </span>${this.props.price}</li>
             </ul>
 
-            <div className='ic'>
-                <button onClick={()=> this.props.updatePart(this.props.id, this.state.updatedPrice)}>Update Part</button>
-                <input name="updatedPrice" onChange={(e) => this.handlChange(e.target.name, e.target.value)}/>
-                <button onClick={()=> this.props.deletePart(this.props.id, this.props.part)}>Delete Part</button>
+            <div className='Groceries-item-class'>
+                <button onClick={()=> this.props.updateGroceries(this.props.id, this.state.updatedPrice)}>Update</button>
+                <input name="updatedPrice" onChange={(e) => this.handleChange(e.target.name, e.target.value)}/>
+                <button onClick={()=> this.props.deleteGroceries(this.props.id, this.props.groceries)}>Delete</button>
             </div>
 
             </div>

@@ -5,7 +5,7 @@ export default function Footer(){
     return (
         <div>
             <h1>
-            <footer>REAL ENTHUSIAST  NEVER MAKE IT TO THE BOTTOM OF THERE CHECK LIST </footer>
+            <footer>the groceries list never ends!</footer>
             </h1>
         </div>
     )

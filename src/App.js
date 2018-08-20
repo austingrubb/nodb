@@ -5,7 +5,8 @@ import './App.css';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Weather from './components/Weather';
-const baseUrl = '/api/get_all_parts'
+import RandomTrumpQuotes from './components/Random'
+const baseUrl = '/api/get_all_Groceries'
 
 class App extends Component {
   constructor(props){
@@ -13,115 +14,110 @@ class App extends Component {
 
     this.state = {
       item: "",
-      type: "Performance",
-      carParts: [],
+      type: "Heathy",
+      groceries: [],
       price: null,
-      updatedPrice: null
+      updatedPrice: null,
+      name: "austin",
+      id: 0,
+      text: ''
      }
-    this.updatePart = this.updatePart.bind( this );
-    this.deletePart = this.deletePart.bind( this );
-    this.createPart = this.createPart.bind( this );
-    this.partType = this.partType.bind( this );
+    this.updateGroceries = this.updateGroceries.bind( this );
+    this.deleteGroceries = this.deleteGroceries.bind( this );
+    this.createGroceries = this.createGroceries.bind( this );
+    this.groceriesType = this.groceriesType.bind( this );
   }
 
   componentDidMount(){
-    axios.get('/api/get_all_parts').then(response => {
-      //console.log(response)
+    axios.get('/api/get_all_Groceries').then(response => {
+      console.log(response)
       this.setState({
-        carParts: response.data
+        groceries: response.data
       })
     })
   }
 
-  updatePart(id, price) {
+  randomTrumpQuotes = () =>{
+    axios.get(`https://api.whatdoestrumpthink.com/api/` + 'v1/quotes/random').then((response) =>{
+      this.setState({
+        randomTrumpQuotesArr: response.data.message
+      })
+    }) 
+  } 
+
+  updateGroceries(id, price) {
     console.log(id, price)
     axios.put(`${baseUrl}?id=${id}`,{price} ).then(response => {
       this.setState({
-        carParts:response.data
+        groceries:response.data
         })
       })
     }
-  deletePart(id) {
-    //console.log('this got hit')
+  deleteGroceries(id) {
+    console.log('this got hit')
     axios.delete(`${baseUrl}/${id}`).then(response => {
-      //console.log(response.data)
+      // console.log(response.data)
       this.setState({
-        carParts:response.data
+        groceries:response.data
       })
     })
   }
- createPart() {
-   //console.log(this.state)
-      let newParts = {
+ createGroceries() {
+   console.log(this.state)
+      let newGroceries = {
       type: this.state.type,
       item: this.state.item,
       price: this.state.price
     }
-  axios.post(`${baseUrl}`, newParts).then(response =>{
+  axios.post(`${baseUrl}`, newGroceries).then(response =>{
     //console.log(response)
-    //console.log(response.data)
+    console.log(response.data)
     this.setState({
-      carParts: response.data,
+      groceries: response.data,
    
     })
   })
 
 }
-partType = (pt) =>{
+groceriesType = (pt) =>{
   this.setState({
     type: pt
   })
 }
 
-handlChange = (key,value) =>{
-  //console.log(value)
+handleChange = (key,value) =>{
   this.setState({[key]:value})
 }
  render() {
-   //console.log(this.state.carParts)
-  //   let newParts = this.state.carParts.map(part => {
-  //     return (
-  //       <div key={part.id}>
-  //       <ul>
-  //       <li>{part.item}</li>
-  //       <li>{part.type}</li>
-  //       <li>{part.price}</li>
-  //     </ul>
-  //     <button onClick={()=> this.updatePart(part.id,this.state.price)}>Update Part</button>
-  //     <input onChange={(e) => this.handlChange("price",e.target.value)}/>
-  //     <button onClick={()=> this.deletePart(part.id,this.state.part)}>Delete Part</button>
-
-
-  //     </div>)
-  //  })
-  let newParts = this.state.carParts.map(part => {
+  let newGroceries = this.state.groceries.map(groceries => {
         return (<StateFull
-                  key={part.id}
-                  id={part.id}
-                  type={part.type}
-                  item={part.item}
-                  price={part.price}
+                  key={groceries.id}
+                  id={groceries.id}
+                  type={groceries.type}
+                  item={groceries.item}
+                  price={groceries.price}
                   updatedPrice = {this.state.updatedPrice}
-                  updatePart ={this.updatePart}
-                  handlChange ={this.handlChange}
-                  deletePart ={this.deletePart}
+                  updateGroceries ={this.updateGroceries}
+                  handleChange ={this.handleChange}
+                  deleteGroceries ={this.deleteGroceries}
                 />)
        })
        console.log(this.state.updatedPrice)
  return (
-      <div className='car-parts'>
+      <div className='Groceries-list'>
         <Header/>
         <Weather/>
+        <RandomTrumpQuotes randomTrumpQuotesArr={this.state.randomTrumpQuotesArr}  randomTrumpQuotes={this.randomTrumpQuotes}/>
         <div>
-          <select onChange={(e) => this.partType(e.target.value)} >
-            <option>Performance</option>,
-            <option>Maintenance</option>
+          <select onChange={(e) => this.groceriesType(e.target.value)} >
+            <option>Heathy Food</option>,
+            <option>Junk Food</option>
           </select>
-         <input onChange={(e) => this.handlChange("item",e.target.value)}/>
-         <input onChange={(e) => this.handlChange("price",e.target.value)}/>
-        <button onClick={this.createPart}>Create Part</button>
+         <input onChange={(e) => this.handleChange("item",e.target.value)}/>
+         <input onChange={(e) => this.handleChange("price",e.target.value)}/>
+        <button onClick={this.createGroceries}>Add Groceries</button>
         <ol>
-          {newParts}
+          {newGroceries}
         </ol>
         </div>
         <Footer/>
